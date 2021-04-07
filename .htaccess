@@ -1,0 +1,33 @@
+DirectoryIndex index.php
+
+Options -MultiViews
+
+RewriteEngine on
+RewriteRule ^home index.php
+RewriteRule ^login login.php
+RewriteRule ^register register.php
+RewriteRule ^settings settings.php
+RewriteRule ^team team.php
+RewriteRule ^about about.php
+
+RewriteRule ^cpanel cpanel.php
+
+RewriteRule ^mailbox$ mailbox.php [L,NC]
+RewriteRule ^mailbox/$ mailbox.php [L,NC]
+RewriteRule ^mailbox/(.*)$ mailbox.php?id=$1
+
+RewriteRule ^article$  article.php [L,NC]
+RewriteRule ^article/$ article.php [L,NC]
+RewriteRule ^article/(.*)$ article.php?id=$1
+RewriteRule ^article/(.*)$/p/(.*)$ article.php?id=$1&page=$1
+
+RewriteRule ^profile$  profile.php [L,NC]
+RewriteRule ^profile/$ profile.php [L,NC]
+RewriteRule ^profile/(.*)$ profile.php?id=$1
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php72” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php72 .php .php7 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
