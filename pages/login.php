@@ -1,21 +1,15 @@
 <?php
-require('core/config.php');
-require('core/func.php');
+require './core/config.php';
 
 if (isset($logged) && $logged === true) {
     header('Refresh: 0; URL=/');
     exit();
 }
 
-include('tpl/header.php');
 ?>
-<section id="sec-def">
-    <article class="art-def">
-        <div class="card bg-dark text-white border-none mb-3 shdw-crd-title">
-            <div id="box-title" class="card-header text-<?php echo $wbcnf['text-var'] ?>">Connexion</div>
-            <div class="card-body custom-shadow-1">
+<h1>Connexion</h1>
+            
                 <?php
-                require('core/config.php');
 
                 //código del login
 
@@ -35,16 +29,13 @@ if (password_verify($pw, $pwha)) {
                     $pwl = mysqli_fetch_assoc($res);
 
                     $pwha = $pwl['password'];
-                    $pwv = password_verify($pw, $pwha);
+                    $pwv = password_verify($pw, $pwha); // verificar si envia valores booleanas
 
                     if (empty($_POST['user']) or preg_match("/[^a-zA-Z0-9.@_-]+/", $user) or empty($_POST['lpw'])) {
-                        alert_danger();
-                        echo 'Veuillez completer tous les champs';
-                        alert_end();
-                    } elseif ($pwl['user'] == $user or $pwl['email'] == $user and $pwl['password'] == $pwv) {
-                        alert_success();
-                        echo 'Connexion réussie';
-                        alert_end();
+                        alert_danger('Veuillez completer tous les champs');
+
+                    } elseif ($pwl['user'] == $user or $pwl['email'] == $user and $pwv == true) {
+                        alert_success('Connexion réussie');
 
                         $_SESSION['id'] = $pwl['id'];
                         $_SESSION['user'] = $pwl['user'];
@@ -55,11 +46,9 @@ if (password_verify($pw, $pwha)) {
                         $sql = "UPDATE users SET ip = $usrip WHERE id = $usrid";
                         mysqli_query($con, $sql);
 
-                        aft_log();
+                        header('Refresh: 0; URL=/');
                     } else {
-                        alert_danger();
-                        echo 'Nom d\'utilisateur ou mot de passe erronés';
-                        alert_end();
+                        alert_danger('Nom d\'utilisateur ou mot de passe erronés');
                         session_destroy();
                     }
                 }
@@ -76,10 +65,3 @@ if (password_verify($pw, $pwha)) {
                     <br><br>
                     <input type="submit" class="btn btn-dark border-light" value="Se connecter" name="snd" style="width: 100%;">
                 </form>
-            </div>
-    </article>
-</section>
-<?php
-include('tpl/right-def.php');
-include('tpl/footer.php');
-?>

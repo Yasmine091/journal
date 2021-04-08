@@ -3,6 +3,8 @@ DirectoryIndex index.php
 Options -MultiViews
 
 RewriteEngine on
+
+RewriteRule ^profile/(.*)$ profile.php?id=$1
 RewriteRule ^home index.php
 RewriteRule ^login login.php
 RewriteRule ^register register.php
@@ -24,10 +26,3 @@ RewriteRule ^article/(.*)$/p/(.*)$ article.php?id=$1&page=$1
 RewriteRule ^profile$  profile.php [L,NC]
 RewriteRule ^profile/$ profile.php [L,NC]
 RewriteRule ^profile/(.*)$ profile.php?id=$1
-
-# php -- BEGIN cPanel-generated handler, do not edit
-# Set the “ea-php72” package as the default “PHP” programming language.
-<IfModule mime_module>
-  AddHandler application/x-httpd-ea-php72 .php .php7 .phtml
-</IfModule>
-# php -- END cPanel-generated handler, do not edit

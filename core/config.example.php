@@ -1,8 +1,8 @@
 <?php
 $dbhost = "localhost";
-$dbuser = "Yasmine";
-$dbpw = "yas09";
-$db = "kukidev";
+$dbuser = "myUsername";
+$dbpw = "myPassword";
+$db = "myDataBase";
 
 $con = mysqli_connect($dbhost, $dbuser, $dbpw, $db);
 
