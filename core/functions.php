@@ -1,5 +1,7 @@
 <?php
 
+// 12 à 13 semaines de stage
+
 function includes($file){
     $_INC = './includes';
     include ($_INC.'/'.$file.'.php');
@@ -16,27 +18,19 @@ function contents(){
         $page = $_GET['page'];
 
         switch($page){
-            case $page == 'article': page('article');
+            case $page == 'new': page('new');
             break;
-            case $page == 'team': page('team');
+            case $page == 'edit': page('edit');
             break;
-            case $page == 'login': page('login');
+            case $page == 'list': page('list');
             break;
-            case $page == 'register': page('register');
-            break;
-            case $page == 'profile': page('profile');
-            break;
-            case $page == 'mailbox': page('mailbox');
-            break;
-            case $page == 'settings': page('settings');
-            break;
-            default: page('articles');
+            default: page('login');
             break;
         }
 
     }
     else{
-        page('articles');
+        page('login');
     }
 }
 

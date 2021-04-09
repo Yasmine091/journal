@@ -4,25 +4,17 @@ Options -MultiViews
 
 RewriteEngine on
 
-RewriteRule ^profile/(.*)$ profile.php?id=$1
 RewriteRule ^home index.php
-RewriteRule ^login login.php
-RewriteRule ^register register.php
-RewriteRule ^settings settings.php
-RewriteRule ^team team.php
-RewriteRule ^about about.php
+RewriteRule ^new index.php?page=new
+RewriteRule ^edit index.php?page=edit
+RewriteRule ^about index.php?page=about
 
-RewriteRule ^cpanel cpanel.php
+RewriteRule ^mailbox$ index.php?page=mailbox [L,NC]
+RewriteRule ^mailbox/$ index.php?page=mailbox [L,NC]
+RewriteRule ^mailbox/(.*)$ index.php?page=mailbox&id=$1
 
-RewriteRule ^mailbox$ mailbox.php [L,NC]
-RewriteRule ^mailbox/$ mailbox.php [L,NC]
-RewriteRule ^mailbox/(.*)$ mailbox.php?id=$1
-
-RewriteRule ^article$  article.php [L,NC]
-RewriteRule ^article/$ article.php [L,NC]
-RewriteRule ^article/(.*)$ article.php?id=$1
-RewriteRule ^article/(.*)$/p/(.*)$ article.php?id=$1&page=$1
-
-RewriteRule ^profile$  profile.php [L,NC]
-RewriteRule ^profile/$ profile.php [L,NC]
-RewriteRule ^profile/(.*)$ profile.php?id=$1
+RewriteRule ^list$  index.php?page=list [L,NC]
+RewriteRule ^list/$ index.php?page=list [L,NC]
+RewriteRule ^list/(.*)$ index.php?page=list&id=$1
+RewriteRule ^list/(.*)$/w/(.*)$ index.php?page=list&id=$1&week=$1
+RewriteRule ^list/(.*)$/m/(.*)$ index.php?page=list&id=$1&month=$1

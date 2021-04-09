@@ -2,7 +2,7 @@
 $dbhost = "localhost";
 $dbuser = "Yasmine";
 $dbpw = "yas09";
-$db = "kukidev";
+$db = "journal";
 
 $con = mysqli_connect($dbhost, $dbuser, $dbpw, $db);
 
@@ -13,7 +13,13 @@ if (!$con) {
 Por si a caso lo necesito
 mysqli_close($conn);
 */
-
+/* 
 $sdtsql = "SELECT * FROM config";
 $stres = mysqli_query($con, $sdtsql);
-$wbcnf = mysqli_fetch_assoc($stres);
+$wbcnf = mysqli_fetch_assoc($stres); */
+
+session_start();
+
+$logged = $_SESSION['logged'] ?? '';
+$usrid = $_SESSION['id'] ?? '';
+$usrnm = $_SESSION['user'] ?? '';
