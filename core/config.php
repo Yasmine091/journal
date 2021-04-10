@@ -1,7 +1,7 @@
 <?php
 $dbhost = "localhost";
-$dbuser = "Yasmine";
-$dbpw = "yas09";
+$dbuser = "root";
+$dbpw = "tgdfq5";
 $db = "journal";
 
 $con = mysqli_connect($dbhost, $dbuser, $dbpw, $db);
