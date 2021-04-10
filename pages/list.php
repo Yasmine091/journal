@@ -7,52 +7,51 @@ $tcres = mysqli_query($con, $ttcn);
 $tcnws = mysqli_fetch_array($tcres);
 $totalcount = $tcnws['count(*)'];
 */
-
-$nsql = "SELECT *, users.id as uid FROM records
-        LEFT JOIN users on news.autor = users.id
-        ORDER BY news.id DESC LIMIT 10";
-$nres = mysqli_query($con, $nsql);
-while ($nws = mysqli_fetch_assoc($nres)) {
-
 ?>
 
-    <article>
-        <div class="card bg-dark text-white border-none">
-            <div class="d-flex">
-                <img class="card-img" src="<?php echo $nws['img'] ?>" alt="Card image">
-                <div class="card-img-left">
-                    <h5 class="card-title mb-2"><?php echo $nws['title'] ?></h5>
-                    <p class="card-text d-flex mb-2 mt-2">
-                        <span class="text-justify m-0"><?php echo $nws['content'] ?></span>
-                        <span class="m-0">..</span>
-                    </p>
-                    <hr class="mb-2 mt-2">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Météo du jour</th>
+      <th scope="col">Mission du jour</th>
+      <th scope="col">Porsuites à donner</th>
+      <th scope="col">Méthodes et technologies</th>
+      <th scope="col">Ce que j'avais à faire</th>
+      <th scope="col">Ce que j'ai fait</th>
+      <th scope="col">Problèmes rencontrés</th>
+      <th scope="col">Solution et pourquoi le choix</th>
+      <th scope="col">Ressources utilisées</th>
+    </tr>
+  </thead>
+  <tbody>
 
-                    <div class="d-flex flex-row text-secondary m-0 0rem">
+<?php
+$Rsql = "SELECT * FROM records
+        ORDER BY week DESC LIMIT 10";
+$Rres = mysqli_query($con, $Rsql);
 
-                        <p class="m-0 mt-2 w-75">
-                            <i class="fas fa-certificate"></i>
-                            <?php echo $nws['category'] ?>
+`feelings`, `mission`, `tech`, `next`, `todo`, `done`, `problems`, `solutions`, `resources`)
+while ($recs = mysqli_fetch_assoc($Rres)) {
+    
+    ?>
 
-                            <a href="profile/<?php echo $nws['user'] ?>">
-                                <i class="fas fa-user"></i>
-                                <?php echo $nws['user'] ?></a>
+    <tr>
+      <th scope="row"><?= $recs['day'] ?></th>
+      <td><?= $recs['feelings'] ?></td>
+      <td><?= $recs['mission'] ?></td>
+      <td><?= $recs['tech'] ?></td>
+      <td><?= $recs['next'] ?></td>
+      <td><?= $recs['todo'] ?></td>
+      <td><?= $recs['done'] ?></td>
+      <td><?= $recs['problems'] ?></td>
+      <td><?= $recs['solutions'] ?></td>
+      <td><?= $recs['resources'] ?></td>
+    </tr>
 
-                            <i class="fas fa-calendar-alt"></i>
-                            <?php echo $nws['date'] ?>
-                        </p>
-
-                        <p class="m-0 mt-2 w-25">
-                            <a href="article/<?php echo $nws['id'] ?>" class="ml-3">
-                                <button class="btn btn-outline-light btn-sm float-right w-75">Voir plus</button>
-                            </a>
-                        </p>
-
-                    </div>
-
-                </div>
-            </div>
-        </div><br>
     <?php
 }
-    ?>
+?>
+
+</tbody>
+</table>
