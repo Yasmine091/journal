@@ -31,7 +31,6 @@ $Rsql = "SELECT * FROM records
         ORDER BY week DESC LIMIT 10";
 $Rres = mysqli_query($con, $Rsql);
 
-`feelings`, `mission`, `tech`, `next`, `todo`, `done`, `problems`, `solutions`, `resources`)
 while ($recs = mysqli_fetch_assoc($Rres)) {
     
     ?>
