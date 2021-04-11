@@ -6,8 +6,8 @@ RewriteEngine on
 
 RewriteRule ^home index.php
 RewriteRule ^new index.php?page=new
-RewriteRule ^edit index.php?page=edit
 RewriteRule ^about index.php?page=about
 
 RewriteRule ^list$  index.php?page=list [L,NC]
 RewriteRule ^day/(.*)$ index.php?page=day&day=$1
+RewriteRule ^edit/(.*)$ index.php?page=edit&day=$1
