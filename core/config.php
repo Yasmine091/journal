@@ -13,12 +13,6 @@ if (!$con) {
 Por si a caso lo necesito
 mysqli_close($conn);
 */
-/* 
-$sdtsql = "SELECT * FROM config";
-$stres = mysqli_query($con, $sdtsql);
-$wbcnf = mysqli_fetch_assoc($stres); */
-
-session_start();
 
 $logged = $_SESSION['logged'] ?? '';
 $usrid = $_SESSION['id'] ?? '';

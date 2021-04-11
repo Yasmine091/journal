@@ -6,3 +6,17 @@
 body {
     font-family: bahnschrift;
 }
+
+li.nav-item, nav form.form-inline {
+    display: inline-block !important;
+}
+
+@media (max-width: 991px){
+    .nav-item button.btn {
+        padding: 0.35rem 1.20rem;
+    }
+}
+
+.daily-info th{
+    height: 15rem;
+}

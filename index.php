@@ -1,7 +1,8 @@
 <?php
 require './core/functions.php';
 
-//session_start();
+session_start();
+
 // Afficher erreurs
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

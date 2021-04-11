@@ -1,56 +1,75 @@
 <?php
 require './core/config.php';
 
+if ($logged === '') {
+  header('Refresh: 0; URL=/');
+  exit();
+}
+
 /*
 $ttcn = "SELECT count(*) FROM news ORDER BY id DESC LIMIT 10";
 $tcres = mysqli_query($con, $ttcn);
 $tcnws = mysqli_fetch_array($tcres);
 $totalcount = $tcnws['count(*)'];
 */
+
+$months = ['Avril', 'Mai', 'Juin', 'Juillet'];
+
+$i = 0;
+
+while ($i < count($months)) {
+
 ?>
+  <div class="col-sm-12 col-md-6 col-lg-4 my-3 mx-auto d-block">
+    <div class="card border-danger">
+      <div class="card-body p-0">
+  <table class="table table-bordered mb-0 border-0">
+    <thead class="text-center text-uppercase text-light border-0">
+      <tr>
+        <th scope="col" colspan="6" class="bg-danger border-top-0 border-bottom-0 border-danger"><?= $months[$i] ?></th>
+      </tr>
+    </thead>
+    <tbody>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Météo du jour</th>
-      <th scope="col">Mission du jour</th>
-      <th scope="col">Porsuites à donner</th>
-      <th scope="col">Méthodes et technologies</th>
-      <th scope="col">Ce que j'avais à faire</th>
-      <th scope="col">Ce que j'ai fait</th>
-      <th scope="col">Problèmes rencontrés</th>
-      <th scope="col">Solution et pourquoi le choix</th>
-      <th scope="col">Ressources utilisées</th>
-    </tr>
-  </thead>
-  <tbody>
+      <?php
+  $m = $months[$i];
 
+      $Rsql = "SELECT * FROM records WHERE month = '$m' GROUP BY week";
+      $Rres = mysqli_query($con, $Rsql);
+
+      while ($recs = mysqli_fetch_assoc($Rres)) {
+
+        $w = $recs['week'];
+
+      ?>
+
+        <tr>
+          <th scope="row">Semaine <?= $recs['week'] ?></th>
+
+          <?php
+
+          $Wsql = "SELECT * FROM records WHERE week = '$w' AND month = '$m' GROUP BY day ORDER BY id ASC";
+          $Wres = mysqli_query($con, $Wsql);
+
+          while ($week = mysqli_fetch_assoc($Wres)) {
+
+          ?>
+            <td><a href="./day/<?= $week['id'] ?>"><?= $week['day'] ?></a></td>
+
+          <?php
+          }
+          ?>
+        </tr>
+
+      <?php
+      }
+      ?>
+
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
 <?php
-$Rsql = "SELECT * FROM records
-        ORDER BY week DESC LIMIT 10";
-$Rres = mysqli_query($con, $Rsql);
-
-while ($recs = mysqli_fetch_assoc($Rres)) {
-    
-    ?>
-
-    <tr>
-      <th scope="row"><?= $recs['day'] ?></th>
-      <td><?= $recs['feelings'] ?></td>
-      <td><?= $recs['mission'] ?></td>
-      <td><?= $recs['tech'] ?></td>
-      <td><?= $recs['next'] ?></td>
-      <td><?= $recs['todo'] ?></td>
-      <td><?= $recs['done'] ?></td>
-      <td><?= $recs['problems'] ?></td>
-      <td><?= $recs['solutions'] ?></td>
-      <td><?= $recs['resources'] ?></td>
-    </tr>
-
-    <?php
+  $i++;
 }
-?>
-
-</tbody>
-</table>
