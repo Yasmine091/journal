@@ -6,19 +6,36 @@ if ($logged == '') {
     exit();
 }
 
+$date = date('Y-m-d'); // Date du jour
+setlocale(LC_TIME, "fr_FR", "French");
+
+$mois = strftime("%B", strtotime($date));
+$semaine = currentWeek();
+$jour = strftime("%A", strtotime($date));
+
 // Se etiquetan los elementos del formulario y se encripta la contraseña
-if (isset($_POST['snd-r'])) {
+if (isset($_POST['new-d'])) {
 
-    //$ = mysqli_real_escape_string($_POST['']);
+    //$ = mysqli_real_escape_string($con, $_POST['']);
+    $feelings = mysqli_real_escape_string($con, $_POST['feelings']);
+    $mission = mysqli_real_escape_string($con, $_POST['mission']);
+    $tech = mysqli_real_escape_string($con, $_POST['tech']);
+    $next = mysqli_real_escape_string($con, $_POST['next']);
+    $tech = mysqli_real_escape_string($con, $_POST['tech']);
+    $todo = mysqli_real_escape_string($con, $_POST['todo']);
+    $done = mysqli_real_escape_string($con, $_POST['done']);
+    $problems = mysqli_real_escape_string($con, $_POST['problems']);
+    $solutions = mysqli_real_escape_string($con, $_POST['solutions']);
+    $resources = mysqli_real_escape_string($con, $_POST['resources']);
 
-    if (empty($_POST['user-r']) or empty($_POST['email-r']) or empty($_POST['lpw-r'])) {
+    if (empty($_POST['feelings']) or empty($_POST['mission']) or empty($_POST['tech']) or empty($_POST['next']) or empty($_POST['todo']) or empty($_POST['done']) or empty($_POST['problems']) or empty($_POST['solutions']) or empty($_POST['resources'])) {
         alert_danger('Veuillez completer tous les champs');
     } else {
 
-        $sql = "INSERT INTO records 
-        (user, email, password, regdat, ip) 
+        $sql = "INSERT INTO `records` 
+        (`month`, `week`, `day`, `feelings`, `mission`, `tech`, `next`, `todo`, `done`, `problems`, `solutions`, `resources`) 
         VALUES 
-        ('$user', '$email', '$pwha', CURDATE(), '$usrip')";
+        ('$mois', '$semaine', '$jour', '$feelings', '$mission', '$tech', '$next', '$todo', '$done', '$problems', '$solutions', '$resources') ";
         mysqli_query($con, $sql);
 
         alert_success('Entrée ajoutée avec succès');
@@ -36,11 +53,6 @@ if (isset($_POST['snd-r'])) {
                 <form method="POST" class="form-group">
 
                 <?php
-$date1 = date('Y-m-d'); // Date du jour
-setlocale(LC_TIME, "fr_FR", "French");
-echo strftime("%A %B", strtotime($date1)); // Mercredi 26 octobre 2016
-
-var_dump(currentWeek());
 
                 ?>
                     <p>
@@ -74,7 +86,7 @@ veille..."></textarea>
                     </p>
                     <p>
                         <label for="done-inp">Ce que j'ai fait</label>
-                        <textarea class="form-control border-info" id="done-inp" rows="3" name="done-inp"></textarea>
+                        <textarea class="form-control border-info" id="done-inp" rows="3" name="done"></textarea>
                     </p>
                     <p>
                         <label for="prob-inp">Problèmes rencontrés</label>
