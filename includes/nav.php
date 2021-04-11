@@ -6,7 +6,7 @@ if (isset($logged) && $logged === true) {
         <ul class="navbar navbar-nav mx-auto d-block text-center p-1">
             <li class="nav-item">
             <button type="button" class="btn btn-dark">
-                <a class="nav-link text-danger" href="/list"><i class="fas fa-calendar-alt"></i></a>
+                <a class="nav-link text-light" href="/list"><i class="fas fa-calendar-alt"></i></a>
             </button>
             </li>
             <li class="nav-item">

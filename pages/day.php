@@ -7,12 +7,16 @@ if ($logged == '') {
 }
 
 $dayID = (int) $_GET['day'];
-/*
-$ttcn = "SELECT count(*) FROM news ORDER BY id DESC LIMIT 10";
-$tcres = mysqli_query($con, $ttcn);
-$tcnws = mysqli_fetch_array($tcres);
-$totalcount = $tcnws['count(*)'];
-*/
+
+if (isset($_POST['del-d'])) {
+  $sql = "DELETE FROM records WHERE id = '$dayID'";
+  mysqli_query($con, $sql);
+
+  alert_success('L\'entrée de journal a été supprimé avec succès');
+
+  header('Refresh: 2; URL=/');
+  exit();
+}
 
 $Rsql = "SELECT * FROM records
         WHERE id = '$dayID'";
@@ -26,7 +30,17 @@ while ($recs = mysqli_fetch_assoc($Rres)) {
 <table class="table table-bordered">
   <thead>
     <tr class="col-sm-12">
-      <th scope="col" colspan="9" class="text-center text-uppercase font-weight-bold display-4 bg-primary text-light"><?= $recs['day'] ?></th>
+      <th scope="col" colspan="8" class="text-center text-uppercase font-weight-bold display-4 bg-primary text-light"><?= $recs['day'] ?></th>
+      <th scope="col" colspan="1" class="text-center bg-primary">
+        <form class="form-inline" method="POST">
+        <button type="button" class="btn btn-dark p-2 mr-1">
+                <a class="nav-link text-warning" href="/edit/<?= $recs['id'] ?>"><i class="fas fa-calendar-day"></i></a>
+        </button>
+        <button type="submit" class="btn btn-dark p-2" name="del-d">
+        <a class="nav-link text-danger"><i class="fas fa-calendar-times"></i></a>
+        </button>
+        </form>
+      </th>
       </tr>
       <tr>
       <th scope="col">Météo du jour</th>

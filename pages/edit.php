@@ -37,7 +37,6 @@ if (isset($_POST['edit-d'])) {
         `solutions` = '$solutions', 
         `resources` = '$resources'
         WHERE id = '$dayID'";
-        var_dump(mysqli_query($con, $sql));
 
         alert_success('Entrée éditée avec succès');
 

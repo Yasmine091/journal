@@ -6,13 +6,6 @@ if ($logged === '') {
   exit();
 }
 
-/*
-$ttcn = "SELECT count(*) FROM news ORDER BY id DESC LIMIT 10";
-$tcres = mysqli_query($con, $ttcn);
-$tcnws = mysqli_fetch_array($tcres);
-$totalcount = $tcnws['count(*)'];
-*/
-
 $months = ['Avril', 'Mai', 'Juin', 'Juillet'];
 
 $i = 0;

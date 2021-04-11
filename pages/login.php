@@ -6,18 +6,12 @@ if (isset($logged) && $logged === true) {
     exit();
 }
 
-//código del login
-
 if (isset($_POST['snd'])) {
 
     $user = mysqli_real_escape_string($con, $_POST['user']);
-    //$email = $_POST['email'];
+
     $pw = $_POST['lpw'];
-    /* 
-if (password_verify($pw, $pwha)) {
-    echo "Este código es importante para que verifiques la contraseña en el login (NO OLVIDAR)";
-}
-*/
+
 
     $pwc = "SELECT * FROM users WHERE user='$user' or email='$user' LIMIT 1";
     $res = mysqli_query($con, $pwc);
