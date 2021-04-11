@@ -64,17 +64,17 @@ function alert_success($msg)
 
 function currentWeek(){
     require 'config.php';
-    $sql = 'SELECT COUNT(*) FROM records';
+    $sql = 'SELECT * FROM records';
     $res = mysqli_query($con, $sql);
-    $week = mysqli_fetch_row($res);
+    $i = 0;
+    $week = 1;
 
-    $howMany = (int) $week[0] % 5;
-    var_dump((int) $howMany);
-    
-    if((int) $week[0] % 5 == 0){
-        return $howMany+1;
+    while(mysqli_fetch_assoc($res)){
+        $i++;
+        if($i % 5 == 0){
+            $week++;
+        }
     }
-    else{
-        return (int) $howMany;
-    }
+
+    return $week;
 }
