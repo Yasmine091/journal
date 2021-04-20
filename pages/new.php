@@ -45,7 +45,7 @@ if (isset($_POST['new-d'])) {
 }
 ?>
 <div class="mb-5 pb-5">
-    <div class="col-sm-12 col-md-6 col-lg-4 my-3 mx-auto d-block">
+<div class="col-sm-12 col-md-8 col-lg-8 col-xl-4 my-3 mx-auto d-block">
         <div class="card border-info">
             <h5 class="card-header text-center text-uppercase font-weight-bold text-light bg-info">Ajouter une entrée de journal</h5>
             <div class="card-body">

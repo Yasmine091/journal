@@ -42,7 +42,7 @@ if (isset($_POST['snd'])) {
 }
 ?>
 
-<div class="col-sm-12 col-md-6 col-lg-4 my-3 mx-auto d-block">
+<div class="col-sm-12 col-md-8 col-lg-8 col-xl-4 my-3 mx-auto d-block">
     <div class="card border-dark">
         <h5 class="card-header text-center text-uppercase font-weight-bold text-light bg-dark">Connexion</h5>
         <div class="card-body">
