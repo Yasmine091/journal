@@ -47,7 +47,7 @@ if (isset($_POST['new-d'])) {
 <div class="mb-5 pb-5">
 <div class="col-sm-12 col-md-8 col-lg-8 col-xl-4 my-3 mx-auto d-block">
         <div class="card border-info">
-            <h5 class="card-header text-center text-uppercase font-weight-bold text-light bg-info">Ajouter une entrée de journal</h5>
+            <h5 class="card-header text-center text-uppercase font-weight-bold text-dark bg-light" style="background-color:lightseagreen !important; color: #fff;">Ajouter une entrée de journal</h5>
             <div class="card-body">
 
                 <form method="POST" class="form-group">
@@ -105,7 +105,7 @@ fait ces choix ?"></textarea>
                         <textarea class="form-control border-info" id="res-inp" rows="3" name="resources" placeholder="Ressources documentaires/humaines"></textarea>
                     </p>
                     <p>
-                        <input type="submit" class="btn btn-info border-info w-100" value="Ajouter" name="new-d">
+                        <input type="submit" class="btn btn-light border-info w-100" style="background-color: lightseagreen !important;" value="Ajouter" name="new-d">
                     </p>
                 </form>
 

@@ -21,7 +21,7 @@ while ($i < count($months)) {
   <table class="table table-bordered mb-0 border-0 text-uppercase">
     <thead class="text-center text-uppercase text-light border-0">
       <tr>
-        <th scope="col" colspan="6" class="bg-danger border-top-0 border-bottom-0 border-danger"><?= $months[$i] ?></th>
+        <th scope="col" colspan="6" class="bg-danger border-top-0 border-bottom-0 border-danger" style="background-color: crimson !important;"><?= $months[$i] ?></th>
       </tr>
     </thead>
     <tbody>
@@ -51,10 +51,17 @@ while ($i < count($months)) {
 
           while ($week = mysqli_fetch_assoc($Wres)) {
 
+            if($week['day'] == 'férié'){
           ?>
-            <td><a href="./day/<?= $week['id'] ?>"><small class="font-weight-bolder"><?= $week['day'] ?></small></a></td>
-
+            <td><small class="font-weight-bolder font-italic" style="color:#444 !important;"><?= $week['day'] ?></small></td>
           <?php
+            }
+            else
+            {
+              ?>
+                <td><a href="./day/<?= $week['id'] ?>" class="text-dark" style="color:#111 !important;"><small class="font-weight-bolder"><?= $week['day'] ?></small></a></td>
+              <?php
+            }
           }
           ?>
         </tr>

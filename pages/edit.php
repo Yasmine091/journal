@@ -60,7 +60,7 @@ while ($recs = mysqli_fetch_assoc($Rres)) {
 <div class="mb-5 pb-5">
     <div class="col-sm-12 col-md-8 col-lg-8 col-xl-4 my-3 mx-auto d-block">
         <div class="card border-warning">
-            <h5 class="card-header text-center text-uppercase font-weight-bold text-light bg-warning">Éditer une entrée de journal</h5>
+            <h5 class="card-header text-center text-uppercase font-weight-bold bg-warning">Éditer une entrée de journal</h5>
             <div class="card-body">
 
                 <form method="POST" class="form-group">
